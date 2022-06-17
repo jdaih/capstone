@@ -21,26 +21,26 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
-// session creation
-app.use(
-    session({
-        store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI}),
-        secret: "super secret",
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            maxAge: 1000 * 60 * 60 * 24,
-        },
-    })
-);
+// // session creation
+// app.use(
+//     session({
+//         store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI}),
+//         secret: "super secret",
+//         resave: false,
+//         saveUninitialized: false,
+//         cookie: {
+//             maxAge: 1000 * 60 * 60 * 24,
+//         },
+//     })
+// );
 
-app.use(function (req, res, next) {
-    res.locals.user = req.session.currentUser;
-    next();
-})
+// app.use(function (req, res, next) {
+//     res.locals.user = req.session.currentUser;
+//     next();
+// })
 
-// Controllers
-app.use("/", controllers.auth);
+// // Controllers
+// app.use("/", controllers.auth);
 
 // Home route
 app.get("/", (req, res) => res.send("Hello World"));
