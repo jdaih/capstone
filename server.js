@@ -1,8 +1,8 @@
 // Require
-const express = require('express');
-const methodOverride = require('method-override')
+const express = require('express')
 const cors = require('cors')
-const controllers = require('./controllers');
+const methodOverride = require('method-override')
+const controllers = require('./controllers')
 
 // Database
 const db = require('./models');
@@ -15,6 +15,10 @@ const app = express();
 
 // db connection
 require('./config/db.connection')
+
+app.use(cors())
+app.use(methodOverride('_method'))
+app.use(express.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => res.status(200).send('Hello World'));
