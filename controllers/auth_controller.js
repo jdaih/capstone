@@ -4,8 +4,8 @@ const bcrypt = require("bcryptjs");
 const { User } = require('../models');
 
 // Login Route
-router.get('/', (req,res) => {
-        res.render('users/login')
+router.get('/login', (req,res) => {
+        res.render('auth/login')
 });
 
 router.post('/', async (req,res, next) => {
@@ -27,7 +27,7 @@ router.post('/', async (req,res, next) => {
 
 // Register Route
 router.get('/register', (req,res) => {
-        res.render('users/register')
+        res.render('auth/register')
 }); 
 
 router.post('/register', async (req,res, next) => {
@@ -48,7 +48,7 @@ router.post('/register', async (req,res, next) => {
     }
 })
 
-// Logout Route
+// logout route
 router.get('/logout', async (req,res)=> {
     try{
         await req.session.destroy();
@@ -58,6 +58,7 @@ router.get('/logout', async (req,res)=> {
         return res._construct.send(error);
     }
 })
+
 
 
 module.exports = router;
